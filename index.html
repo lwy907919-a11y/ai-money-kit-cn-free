@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>免费 AI 工具 - AI 赚钱工具包中文版</title>
+<meta name="description" content="选 1 个系统,免费拿到 AI 提示词模板。不需要注册,不需要邮箱,直接用。">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.7; color: #1a1a1a; background: #fafafa; }
+.nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 12px 24px; }
+.nav-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 20px; font-weight: 900; color: #ee0979; }
+.cta-nav { color: #1a1a1a; text-decoration: none; font-size: 14px; font-weight: 600; }
+.container { max-width: 800px; margin: 0 auto; padding: 30px 24px; }
+.hero { background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%); color: #fff; padding: 50px 24px 30px; text-align: center; }
+.hero h1 { font-size: 36px; line-height: 1.2; font-weight: 900; margin-bottom: 12px; }
+.hero p { font-size: 16px; color: #fff; opacity: 0.95; max-width: 600px; margin: 0 auto; }
+.tool-area { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 30px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.system-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.system-btn { padding: 16px 12px; border: 2px solid #e5e7eb; border-radius: 10px; background: #fff; cursor: pointer; text-align: center; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+.system-btn:hover { border-color: #ee0979; }
+.system-btn.active { border-color: #ee0979; background: #fff5f8; }
+.system-btn .icon { font-size: 24px; display: block; margin-bottom: 4px; }
+.form-row { margin-bottom: 14px; }
+.form-row label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 14px; color: #1a1a1a; }
+.form-row input, .form-row textarea, .form-row select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; font-family: inherit; box-sizing: border-box; }
+.form-row textarea { min-height: 80px; resize: vertical; }
+.btn-primary { background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%); color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; }
+.btn-primary:disabled { background: #94a3b8; cursor: not-allowed; }
+.output { background: #1a1a1a; color: #e2e8f0; padding: 20px; border-radius: 12px; margin: 16px 0; min-height: 80px; white-space: pre-wrap; font-size: 13px; line-height: 1.7; font-family: 'Courier New', monospace; display: none; word-break: break-word; }
+.output.show { display: block; }
+.output.loading { color: #94a3b8; font-style: italic; }
+.upsell { background: linear-gradient(135deg, #fff5f8 0%, #ffe0e8 100%); border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; display: none; border: 1px solid #ee0979; }
+.upsell.show { display: block; }
+.upsell h3 { color: #ee0979; margin-bottom: 8px; }
+.upsell a { display: inline-block; background: #ee0979; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; margin-top: 8px; }
+footer { background: #1a1a1a; color: #94a3b8; padding: 30px 24px; text-align: center; font-size: 13px; }
+footer a { color: #ee0979; }
+.alert-box { background: #fff5f8; border-left: 4px solid #ee0979; padding: 12px 16px; border-radius: 6px; margin: 16px 0; font-size: 14px; color: #4a0e2e; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo">AI 赚钱工具包 · 免费试用</div>
+    <a href="https://lwy907919-a11y.github.io/ai-money-kit-cn/" class="cta-nav">完整版 ¥29 起 →</a>
+  </div>
+</div>
+
+<div class="hero">
+<h1>选 1 个系统<br>免费拿 AI 提示词</h1>
+<p>5 个真实可用的 AI 业务系统,选 1 个免费试用。生成可复制的提示词,直接粘到 ChatGPT/Claude/文心一言/通义千问 用。</p>
+</div>
+
+<div class="container">
+<div class="tool-area">
+<h2 style="text-align:center;margin-bottom:8px;">选择系统</h2>
+<p style="text-align:center;color:#6b7280;margin-bottom:20px;font-size:14px;">每个都是可以立刻开工的真实 AI 业务</p>
+<div class="system-selector">
+  <div class="system-btn active" data-system="resume" onclick="selectSystem('resume', this)">
+    <span class="icon">💼</span>简历优化
+  </div>
+  <div class="system-btn" data-system="email" onclick="selectSystem('email', this)">
+    <span class="icon">📧</span>群发邮件
+  </div>
+  <div class="system-btn" data-system="content" onclick="selectSystem('content', this)">
+    <span class="icon">🎨</span>内容代写
+  </div>
+  <div class="system-btn" data-system="leadgen" onclick="selectSystem('leadgen', this)">
+    <span class="icon">🤖</span>客户挖掘
+  </div>
+  <div class="system-btn" data-system="support" onclick="selectSystem('support', this)">
+    <span class="icon">💬</span>AI 客服
+  </div>
+</div>
+
+<div class="form-row">
+  <label id="contextLabel">你的目标客户(卖给谁 / 服务谁?)</label>
+  <input type="text" id="context" placeholder="例:1-10 人的 SaaS 初创公司创始人,做工具类产品" />
+</div>
+<div class="form-row">
+  <label>你的产品 / 服务(提供什么?价格多少?)</label>
+  <textarea id="product" placeholder="例:AI 简历优化服务,500-2000 元/份,7 天交付"></textarea>
+</div>
+<button class="btn-primary" id="genBtn" onclick="generate()">✨ 免费生成 AI 提示词</button>
+<p style="text-align:center;color:#6b7280;font-size:13px;margin-top:8px;">不需要注册,不需要邮箱。免费生成 1 次。</p>
+
+<div class="alert-box">
+<strong>使用说明:</strong> 生成的提示词,直接复制粘到 ChatGPT / Claude / 文心一言 / 通义千问 / Kimi / 豆包 等任何 AI 工具的对话框,就能得到专业输出。
+</div>
+
+<div class="output" id="output"></div>
+
+<div class="upsell" id="upsell">
+<h3>👀 看着不错?</h3>
+<p style="color:#4a0e2e;font-size:14px;">完整版 AI 赚钱工具包包含 5 个系统的全套资料:250+ 提示词、5 套定价指南、50+ 外包话术、5 套成交流程。开箱即用,1 天上手接单。</p>
+<a href="https://lwy907919-a11y.github.io/ai-money-kit-cn/#pricing">完整版 ¥29 起 →</a>
+</div>
+</div>
+</div>
+
+<footer>
+<p>© 2026 AI 赚钱工具包 by Hzylw</p>
+<p>微信咨询:yangliwei_hzylw | <a href="https://lwy907919-a11y.github.io/ai-money-kit-cn/">完整版</a></p>
+</footer>
+
+<script>
+let currentSystem = 'resume';
+
+function selectSystem(sys, btn) {
+  currentSystem = sys;
+  document.querySelectorAll('.system-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const labels = {
+    resume: '你要优化的简历(粘贴你的工作经历)',
+    email: '你的目标客户画像(发给谁?)',
+    content: '你要写什么内容?(公众号/小红书/知乎/博客)',
+    leadgen: '你找什么样的客户?(行业+规模+角色)',
+    support: '你卖什么产品?(电商/SaaS/服务)'
+  };
+  const placeholders = {
+    resume: '例:3 年 Java 后端,做过电商系统,熟悉 Spring Cloud',
+    email: '例:SaaS 创始人,5-20 人团队,做工具类产品',
+    content: '例:小红书母婴博主,每周 3 更',
+    leadgen: '例:跨境电商运营经理,深圳/广州,年营收 5000 万+',
+    support: '例:美妆品牌天猫店,日均 200 咨询'
+  };
+  document.getElementById('contextLabel').textContent = labels[sys];
+  document.getElementById('context').placeholder = placeholders[sys];
+}
+
+function generate() {
+  const context = document.getElementById('context').value.trim();
+  const product = document.getElementById('product').value.trim();
+  
+  if (!context || !product) {
+    alert('请填写目标客户和产品信息');
+    return;
+  }
+  
+  const output = document.getElementById('output');
+  const upsell = document.getElementById('upsell');
+  const btn = document.getElementById('genBtn');
+  
+  btn.disabled = true;
+  btn.textContent = '生成中...';
+  output.classList.add('show', 'loading');
+  output.textContent = '正在生成专业提示词...';
+  upsell.classList.remove('show');
+  
+  setTimeout(() => {
+    const prompts = {
+      resume: `📋 AI 简历优化师 - 提示词
+
+【你的角色】
+你是一位有 10 年经验的简历优化师,曾帮助 1000+ 求职者拿到大厂 offer。你精通 STAR 法则、关键词优化、量化成果。
+
+【客户信息】
+${context}
+
+【客户求职目标】
+${product}
+
+【你的任务】
+基于以上信息,生成 1 份专业简历优化建议,包括:
+
+1. **个人简介(120 字内)**
+   - 突出 3 个核心优势
+   - 用数据说话(年限、规模、ROI)
+
+2. **工作经历(STAR 法则)**
+   - 每段经历:背景(Situation)→任务(Task)→行动(Action)→结果(Result)
+   - 必须量化(如:"提升 30% 转化率"、"管理 5 人团队")
+
+3. **核心技能关键词(15-20 个)**
+   - 行业通用词 + 岗位专业词 + 工具方法词
+   - ATS 友好格式
+
+4. **3 段项目亮点**
+   - 项目名 + 你的角色 + 关键技术 + 业务结果
+
+5. **3 条面试可能被问的问题 + 建议回答方向**
+
+【输出格式】
+分 5 个模块,每模块用 --- 分隔。用 Markdown 格式,适合复制到 Word 简历模板。`,
+
+      email: `📧 AI 群发邮件获客 - 提示词
+
+【你的角色】
+你是一位 B2B 邮件营销专家,曾帮 50+ SaaS 公司获取 10万+ 潜客邮件,平均打开率 35%,回复率 8%。
+
+【目标客户】
+${context}
+
+【产品/服务】
+${product}
+
+【你的任务】
+生成 1 封高转化率的冷邮件,具体包括:
+
+1. **主题行(3 个备选)**
+   - 短(8 字内)+ 引发好奇 + 不用 emoji
+   - A/B 测试建议
+
+2. **邮件正文(150 字内)**
+   - 第 1 句:具体赞美对方公司(不要泛泛)
+   - 第 2 句:你观察到的 1 个具体问题
+   - 第 3 句:你的产品如何解决(1 个案例)
+   - 第 4 句:CTA(15 分钟电话,具体时间)
+
+3. **跟进邮件 3 封(第 3/7/14 天)**
+   - 第 3 天:补充 1 个数据
+   - 第 7 天:问 1 个开放问题
+   - 第 14 天:给一个"备用方案" / 资源
+
+4. **退订与合规**
+   - 退订链接位置
+   - 公司联系方式
+   - 符合中国《广告法》
+
+【输出格式】
+分模块,带邮件模板可直接复制。用中文,符合中文邮件礼仪。`,
+
+      content: `✍️ AI 内容代写 - 提示词
+
+【你的角色】
+你是一位爆款内容操盘手,曾在小红书做出 100+ 万阅读的内容,公众号单篇最高 50 万+,知乎万赞答主。你懂各平台算法 + 读者心理。
+
+【内容主题】
+${context}
+
+【发布平台 + 目标】
+${product}
+
+【你的任务】
+生成 1 篇可发布的爆款内容,具体包括:
+
+1. **标题(5 个备选)**
+   - 数字型 / 反差型 / 痛点型 / 好奇型 / 利益型
+   - 各平台标题字数限制内
+
+2. **开头(前 50 字)**
+   - 强 hook(数据 / 反问 / 故事)
+   - 不允许有"大家好我是..."这种废开头
+
+3. **正文结构**
+   - 3-5 个核心观点
+   - 每个观点配 1 个案例 / 数据 / 金句
+   - 段落不超过 4 行(手机阅读友好)
+   - 关键句加粗
+
+4. **结尾 + CTA**
+   - 总结 1 句金句
+   - 引导评论 / 关注 / 收藏
+   - 评论区预埋 3 个问题
+
+5. **平台特定优化**
+   - 小红书:9 张图描述 + 20 个 hashtag
+   - 公众号:加 1 个"阅读原文" + 关注引导
+   - 知乎:开头 1 段是结论(知乎逻辑)
+
+【输出格式】
+分平台输出(3 套内容),各平台单独成段,直接可发布。`,
+
+      leadgen: `🤖 AI 客户挖掘 - 提示词
+
+【你的角色】
+你是一位 B2B 销售专家,曾在 SaaS 公司把月线索量从 50 提升到 1000+,熟悉 8 种获客渠道、5 套挖掘工具。
+
+【目标客户画像】
+${context}
+
+【产品/服务】
+${product}
+
+【你的任务】
+基于以上信息,生成 1 套完整的客户挖掘方案,具体包括:
+
+1. **客户画像细化**
+   - 行业 / 公司规模 / 营收 / 地区
+   - 决策角色(3-5 个:CEO/CMO/CTO/采购/运营)
+   - 痛点(3-5 个) + 触发事件(融资/扩张/换工具/被坑)
+
+2. **挖掘渠道(5 套,排序)**
+   - 企查查/天眼查:筛选条件 + 导出格式
+   - 百度地图/高德:行业关键词 + 区域
+   - 抖音/小红书:关键词监控 + 评论挖掘
+   - LinkedIn/脉脉:职位 + 公司双重筛选
+   - 行业社群/展会:具体名单 + 切入话术
+
+3. **每个渠道每周挖掘量 + 转化率预估**
+   - 给出真实预期(行业平均 0.5-2% 转化)
+
+4. **触达话术**
+   - 短信(50 字内)
+   - 电话(30 秒开场白)
+   - 微信(加好友话术 + 第一句)
+   - 邮件(参考邮件系统)
+
+5. **CRM 跟进节奏**
+   - 第 1 / 3 / 7 / 14 / 30 天
+   - 每次触达内容 + 目的
+
+【输出格式】
+分模块,具体到执行步骤。给出每日工时分配建议(2 小时/天可做)。`,
+
+      support: `💬 AI 客服 - 提示词
+
+【你的角色】
+你是一位 AI 客服系统架构师,曾为 20+ 品牌搭建 AI 客服,把人工客服成本降低 70%,客户满意度从 3.8 升到 4.6。
+
+【业务场景】
+${context}
+
+【产品/服务】
+${product}
+
+【你的任务】
+基于以上信息,生成 1 套完整的 AI 客服搭建方案,具体包括:
+
+1. **客服场景分类(8-10 类)**
+   - 售前:咨询/比价/促销
+   - 售中:下单/支付/物流
+   - 售后:退换/维修/投诉
+   - 通用:咨询/建议/感谢
+   - 每类给 3-5 个常见问句
+
+2. **AI 回答模板(每类 3 个)**
+   - 标准回答
+   - 升级人工的触发条件
+   - 满意度回访话术
+
+3. **知识库搭建**
+   - 必有的 5 类文档(产品/价格/政策/物流/退换)
+   - 更新频率 + 谁负责
+
+4. **人机协作流程**
+   - AI 处理 80%,人工 20%
+   - 人工介入的 5 种情况
+   - 24h 在线 vs 工作时间
+
+5. **效果指标(KPI)**
+   - 自动解决率(目标 80%+)
+   - 平均响应时间(< 30 秒)
+   - 客户满意度(> 4.5/5)
+   - 转化率(咨询→下单)
+
+【输出格式】
+分模块,直接可以交给客服团队或 AI 工具使用。给一个 7 天上线时间表。`
+    };
+    
+    output.classList.remove('loading');
+    output.textContent = prompts[currentSystem];
+    upsell.classList.add('show');
+    btn.disabled = false;
+    btn.textContent = '✨ 重新生成';
+  }, 800);
+}
+</script>
+
+</body>
+</html>
